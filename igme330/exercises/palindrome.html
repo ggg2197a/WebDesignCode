@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Palindrome Detector - &lt;input></title>
+	<style>
+		body{font-family:sans-serif;}
+	</style>
+</head>
+<body>
+<h1>Palindrome Detector</h1>
+<section>
+	<p><input id="input" type="text" size="50" maxlength="50" autofocus value="It was a dark and stormy night ..." /></p>
+	<p id="output"></p>
+</section>
+<script>
+let input = document.querySelector("#input");
+let output = document.querySelector("#output");
+
+input.oninput = doInput; // called whenever the content of the field changes
+input.dispatchEvent(new Event("input")); // calls doInput() when the page first loads
+
+function doInput(e){
+    let text = e.target.value;
+
+
+    //set to lowercase and reverse
+    text = text.toLowerCase();
+    let regex = /\s+/g;
+    text = text.replace(regex,"");
+    text = text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?'"]+/g,'');
+    let palin = text;
+    text = text.split(""); // or use "" to separate into an array of every character - remove spaces first!
+    text = text.reverse();
+    text = text.join("");
+
+    if(text == palin){
+        output.style.color = "green";
+        output.innerHTML = "This is a palindrome :)";
+    }
+    else{
+        output.style.color = "red";
+        output.innerHTML = "This is not a palindrome :|";
+    }
+    //indexOf
+    //let index = text.indexOf("dark");
+
+    //substring
+    //let sub = text.substring(0,5);
+
+    //replace - uses regex(?)
+    //let regex = /dark/gi;
+    //let regex = /dark|stormy|rainy|wet|gloomy/gi
+    //let rep = text.replace(regex,"Sunny!");
+
+    //set to lowercase and reverse
+    //text = text.toLowerCase();
+    //let regex = /\s+/g;
+    //text = text.replace(regex,"");
+    //text = text.split(" "); // or use "" to separate into an array of every character - remove spaces first!
+    //text = text.reverse();
+    //text = text.join("");
+
+
+
+    //str = str.replace(/\s+/g, ''); // get rid of all repetions of 1 or more white space characters
+    //str = str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?'"]+/g,''); // get rid of all repetions of all of these characters
+	//output.innerHTML = text;
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Web Audio Visualizer</title>
+    <link type="text/css" href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="project1.css">
+	<script src="src/loader.js"></script>
+	<script src="src/main.js"></script>
+</head>
+<body>
+    <h1>GON-TV Audio Experience</h1>
+	<canvas id="canvas" width="1080" height="720"></canvas>
+	<div id="controls">
+		<div id = "imgControls">
+            <div>
+                <label for="Yradius">Ellipse Y-Radius</label>
+                <input type="range" id="circleYRadius" name="Yradius" min="10" max="240">
+            </div>
+            <div>
+                <label for="Xradius">Ellipse X-Radius</label>
+                <input type="range" id="circleXRadius" name="Xradius" min="10" max="240">
+            </div>
+            <div id = "checkBoxCtrls">
+                <label>Visual Controls</label><br>
+                <input type="checkbox" id="invertCtrl" value="false">Inverted<br>
+                <input type="checkbox" id="noiseCtrl" value="false">White Noise<br>
+                <input type="checkbox" id="linesCtrl" value="false">Lines<br>
+                <input type="checkbox" id="chaosCtrl" value="false">Chaos<br>
+            </div>
+            <div id="radioCtrls">
+                <label>Color Controls</label><br>
+                <input type="radio" name="colorCtrl" value="none">No Shift<br>
+                <input type="radio" name="colorCtrl" value="red">Red Shift<br>
+                <input type="radio" name="colorCtrl" value="green">Green Shift<br>
+                <input type="radio" name="colorCtrl" value="blue">Blue Shift<br>
+            </div>
+		<button id="fsButton">Go Full Screen</button><br>
+        </div>
+        <div id="audioControls">
+            <audio controls loop></audio>
+            <div>
+                <label for="lowpass">Bass Boost</label>
+                <input type = "range" id="lowPassLevel" name="lowpass" min = "0" max="25" value="0">
+            </div>
+            <div>
+                <label for="highpass">Treble Boost</label>
+                <input type = "range" id="highPassLevel" name="highpass" min = "0" max="25" value="0">
+            </div>
+        </div>
+        <div id = "songControls">
+            <label>Song Select: 
+			<select id="trackSelect" >
+                <option value="audio/Golgo 13 (NES) - Title Theme">Golgo 13 (NES) - Title Theme</option>
+                <option value="audio/Gorillaz (arr. 8-Bit Universe) - Feel Good Inc.">Gorillaz (arr. 8-Bit Universe) - Feel Good Inc.</option>
+                <option value="audio/Pokemon Blue_Red - Pokemon Tower">Pokemon Red/Blue - Pokemon Tower</option>
+				<option value="audio/Shovel Knight - Strike the Earth!">Shovel Knight - Strike the Earth!</option>
+				<option value="audio/Solomons Key (NES) - Room Theme 1">Solomon's Key - Room Theme 1</option>
+				<option value="audio/UnderTale - Bonetrousle">UnderTale - Bonetrousle</option>
+			</select>
+		    </label>
+            <p id="status">???</p>
+        </div>
+	</div>
+</body>
+</html>

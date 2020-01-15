@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Project 2 - Yu-Gi-Oh! + VexFlow</title>
+
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+    <!-- Vue and Bootstrap required links -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"/>
+    <link type="text/css" rel="stylesheet" href="css/project2.css"/>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="https://unpkg.com/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+    <script src="https://unpkg.com/vexflow/releases/vexflow-min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <header-display v-bind:title="title" id="header"></header-display>
+    <!-- Formatting currently similar to Vue-II exercise -->
+    <div class="row search-row" id="searchBar">
+		<div class="col-md-12">
+            <input v-model="searchName" class="form-control" placeholder="Search Here!">
+			<button @click="search" class="btn btn-primary" type="submit"> Search </button>
+			<button @click="random" class="btn btn-primary" type="submit"> Random Card! </button>
+		</div>
+    </div>
+    
+    <div id="cardData">
+		<div class="col-md-12">
+		<!-- card stuff goes here -->
+        <img :src="getImage()"/>
+		</div>
+    </div>
+    
+    <div id="musicPage">
+        <card-display v-bind:name="result.name"></card-display>
+        <button @click="playMusic" class="btn btn-primary" type="submit">Play Music!</button>
+        <p></p>
+        <a href="project2.html">Click here to refresh the page to reset audio! </a>
+        <div id = "music"></div>
+    </div>
+</div>
+</body>
+<script src="src/vue-components.js"></script>
+<script src="src/vue-main.js"></script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+    <title>Day1</title>
+    <style>
+        *{font-size:1.2em;}
+    </style>
+    <link rel="stylesheet" href="exercise1a.css">
+    <script>
+        "use strict";
+        function init()
+        {
+            console.log("init");
+            let button = document.querySelector("button");
+            button.onclick = handleClick;
+            document.querySelector("p").style.color = "red";
+            document.querySelector("p").style.background = "yellow";
+
+        }
+        function handleClick()
+        {
+            console.log("clicked");
+            let p  = document.querySelector("#output");
+            let name1 = document.querySelector("#input1").value.trim() || "Person";
+            let name2 = document.querySelector("#input2").value.trim() || "Person";
+            p.textContent = "Hello " + name1 + " " + name2;
+        }
+        window.onload = init;
+    </script>
+    
+</head>
+    <body>
+        <button>Click Me</button>
+        <input id="input1" placeholder="Type Your First Name">
+        <input id="input2" placeholder="Type Your Last Name">
+        <p id="output">???</p>
+    </body>
+</html>

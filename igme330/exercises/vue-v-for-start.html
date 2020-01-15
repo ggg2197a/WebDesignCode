@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>v-for</title>
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+    <style>
+        #root{margin: 1em;}
+        #badge{margin: 1em;}
+    </style>
+</head>
+<body>
+<div id="root">
+    <h1>{{title}}</h1><br>
+
+    <div id = "badge">
+        <b-button variant="primary">
+            Number of Guests <b-badge variant="light">{{numGuests}}</b-badge>
+        </b-button>
+    </div>
+
+    <input type="text" v-model.trim="newName">
+	<button v-on:click="addName">Add Name</button>
+	<ol>
+        <li v-for="name in names">{{ name.text }}</li>
+    </ol>
+</div>
+
+<script>
+
+let app = new Vue({
+	el: '#root',
+	data: {
+        title: 'Vue Part 1',
+		names: [
+            {text: 'Greg'},
+            {text: 'Bobby'},
+            {text: 'Dionne'}
+        ],
+        newName: "???"
+    },
+    methods:{
+        addName(){
+            if(this.newName != ""){
+                app.names.push({text: this.newName});                
+            }
+            this.newName = "";
+        }
+    },
+    computed: {
+        numGuests(){
+            return this.names.length;
+        }
+    }
+});
+
+</script>
+</body>
+</html>

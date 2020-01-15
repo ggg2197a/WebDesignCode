@@ -1,0 +1,43 @@
+#header{
+    background-color: #BCD8C1;
+    padding: 1rem;
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+}
+
+input.form-control{
+    display: inline-block;
+    width: 20rem;
+    margin-right:1rem;
+    padding: 1rem;
+}
+
+#searchBar{
+    text-align: center;
+    background-color: #211A1D;
+    padding: 1rem;
+}
+
+#cardData{
+    text-align: center;
+    padding-top: 2rem;
+    background-color: #23395B;
+}
+
+#musicPage{
+    text-align: center;
+    padding-top: 1rem;
+    background-color: #23395B;
+    color: #BCD8C1;
+}
+
+#music{
+    align-content: center;
+    text-align: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    background-color: white;
+}

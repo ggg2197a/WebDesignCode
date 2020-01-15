@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Canvas Helpers Starter</title>
+	<style type="text/css">
+	canvas{
+		border:1px solid gray;
+	}
+	</style>
+</head>
+<body>
+	<canvas width="640" height="480">
+		Get a real browser!
+	</canvas>
+	<script>
+	'use strict';
+		
+	init();
+	
+	function init(){
+		let ctx = document.querySelector('canvas').getContext('2d');
+		// test the drawRectangle() function
+		//drawRectangle(ctx);
+		//drawRectangle(ctx,100,100,250,250,"red","yellow",10);
+        //drawCircle(ctx, 200, 200, 9, "blue", "yellow", 1, 0, Math.PI*2);
+        //drawLine(ctx, 300, 200, 500, 500, "pink", 8);
+        //drawTriangle(ctx,0,0,50,50,-50,50,"red","black",5);
+        //drawArc(ctx,0,0,300,0,150,75,"red","black",5);
+        drawRectangle(ctx, 0, 0, 640, 480, "black", "black", 0);
+        
+        ctx.save();
+        ctx.translate(320, 240);
+        ctx.rotate(Math.PI);
+        ctx.translate(-320, -240);
+        ctx.scale(5, 5);
+        drawArc(ctx, 0, 0, 640, 320, 175, 175,createColorRGBa(125, 0, 255, 0.2),createColorRGBa(125, 0, 255, 0.2),0);
+        ctx.restore();
+        
+        ctx.save();
+        ctx.translate(-320, -240);
+        ctx.rotate(Math.PI * 2);
+        ctx.translate(320, 240);
+        ctx.scale(5, 5);
+        drawArc(ctx, 0, 0, 640, 320, 175, 175,createColorRGBa(125, 0, 255, 0.2),createColorRGBa(125, 0, 255, 0.2),0);
+        ctx.restore();
+        
+        drawLine(ctx, 0, 240, 640, 240, "white", "white", 2);
+        
+        for(let i = 0; i < 30; i++){
+            drawCircle(ctx, 320, 240, 240, createColorRGBa(i * 10 - i, i * 10 - i, i * 10 - i, 0.2), createColorRGBa(i * 10 - i, i * 10 - i, i * 10 - i, 0.2), 0, 0, (Math.PI*6)/(i+0.5));
+        }
+        
+        ctx.save();
+        ctx.translate(320, 160);
+        drawTriangle(ctx,0,-160,205,205,-205,205,createColorRGBa(125, 0, 255, 0.4),createColorRGBa(125, 0, 255, 0.4),1);
+        ctx.restore();
+	}
+	
+	// we took care of drawRectangle() for you - now you need to complete the other 4 functions
+	function drawRectangle(ctx,x=0,y=0,width=25,height=25,fillStyle="red",strokeStyle="black",lineWidth=0){
+		ctx.save();                
+		ctx.beginPath();            
+		ctx.rect(x,y,width,height);   
+		ctx.closePath(); 
+		ctx.fillStyle = fillStyle;
+		ctx.strokeStyle = strokeStyle;    
+		ctx.lineWidth = lineWidth;  
+		ctx.fill();              
+		ctx.stroke();                            
+		ctx.restore();             
+	}
+	
+	function drawCircle(ctx,x=0,y=0,radius=10, fillStyle="red",strokeStyle="black",lineWidth=0,startAngle=0,endAngle=Math.PI*2){
+            ctx.save();
+            ctx.fillStyle = fillStyle;
+            ctx.strokeStyle = strokeStyle;
+            ctx.lineWidth = lineWidth;
+            // fill circle
+			ctx.beginPath();
+			//  ctx.arc(x,y,radius,startAngle,endAngle, clockwise)
+			ctx.arc(x, y, radius, startAngle, endAngle, false); 
+			ctx.closePath();
+ 			ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+	}
+	
+	function drawLine(ctx,x1=0,y1=0,x2=100,y2=0,strokeStyle="black",lineWidth=5){
+		// you do!
+        ctx.save();
+        ctx.strokeStyle = strokeStyle;
+        ctx.lineWidth = lineWidth;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+	}
+	
+	function drawTriangle(ctx,x1=0,y1=0,x2=50,y2=50,x3=-50,y3=50,fillStyle="red",strokeStyle="black",lineWidth=5){
+		// you do!
+        ctx.save();
+        ctx.fillStyle = fillStyle;
+        ctx.strokeStyle = strokeStyle;
+        ctx.lineWidth = lineWidth;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.lineTo(x3, y3);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+	}
+	
+	function drawArc(ctx,x1=0,y1=0,x2=300,y2=0,cpX=150,cpY=75,fillStyle="red",strokeStyle="black",lineWidth=5){
+		// you do!
+        ctx.save();
+        ctx.fillStyle = fillStyle;
+        ctx.strokeStyle = strokeStyle;
+        ctx.lineWidth = lineWidth;
+        ctx.beginPath();
+        ctx.bezierCurveTo(x1,y1, cpX, cpY, x2, y2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+	}
+        
+	function getRandomColor(){
+			function getByte(){
+				return 55 + Math.round(Math.random() * 200);
+			}
+			return "rgba(" + getByte() + "," + getByte() + "," + getByte() + ",1)";
+		}
+        
+    function createColorRGBa(r, g, b, a){
+			return "rgba(" + r + "," + g + "," + b + ", " + a + ")";
+    }
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>High Score App</title>
+	<style>
+	*{
+		font-family: monospace;
+		font-size:1.2em;
+	}
+	#scoreElement{
+		font-size:3em;
+		width:5em;
+		height:2.5em;
+		color:white;
+		background-color:black;
+		border:5px solid gray;
+		text-align:center;
+		padding-top: 1em;
+	}
+	</style>
+</head>
+<body>
+
+
+<p id="scoreElement">0</p>
+<p>Name --> <input type="text" value="MADMAX" id="nameField"></p>
+<button id="clickMeButton">Click Me!</button>
+<button id="saveScoreButton">Save High Score</button>
+
+<!-- #1 - link to Firebase goes here  -->
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+
+<script type="module">
+
+/* #2 - The rest of the Firebase setup code goes here */
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDAJ0anse6p0vaB8swerJiSLEbQa1uXen0",
+    authDomain: "high-scores-ff0a1.firebaseapp.com",
+    databaseURL: "https://high-scores-ff0a1.firebaseio.com",
+    projectId: "high-scores-ff0a1",
+    storageBucket: "high-scores-ff0a1.appspot.com",
+    messagingSenderId: "482161498274"
+};
+firebase.initializeApp(config);
+	
+console.log(firebase); // #3 - make sure firebase is loaded
+	
+let score = 0;
+	
+clickMeButton.onclick = _ => {
+	score++;
+	scoreElement.innerText = score;
+};
+
+// saveScoreButton.onclick = _ => {
+// 	firebase.database().ref('scores').push({
+// 		userID: nameField.value,
+// 		score: score
+// 	});
+// };
+
+saveScoreButton.onclick = _ => {
+	let path = 'scores2/' + nameField.value;
+	firebase.database().ref(path).set({ // over-writes old values
+		userID: nameField.value,
+		score: score
+	});
+};
+
+</script>
+
+</body>
+</html>

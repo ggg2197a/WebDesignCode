@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Walker-1</title>
+	<style>
+	canvas{
+		border:1px solid gray;
+	}
+	</style>
+	<script>
+	
+	let walker = {
+		x:320,
+		y:240,
+		color: "black",
+		width: 5,
+		move()
+        {
+			if(flipWeightedCoin())
+            {
+				this.x += flipWeightedCoin() ? -this.width : this.width;
+                if(this.x < 0)
+                {
+                    this.x = 595;
+                }
+                if(this.x > 600)
+                {
+                    this.x = 5;
+                }
+			}
+            else
+            {
+				this.y += flipWeightedCoin() ? -this.width : this.width;
+                if(this.y < 0)
+                {
+                    this.y = 435;
+                }
+                if(this.y > 440)
+                {
+                    this.y = 5;
+                }
+			}
+		}
+	};
+	
+	
+		// #0 - in this class we will always use ECMAScript 5's "strict" mode
+		// See what 'use strict' does here:
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
+		'use strict';
+		let ctx;
+		// #1 call the init function after the pages loads
+		window.onload = function(){
+			console.log("page loaded!");
+			// #2 Now that the page has loaded, start drawing!
+			
+			// A - canvas variable points at <canvas> tag
+			let canvas = document.querySelector('canvas');
+			
+			// B - the ctx variable points at a "2D drawing context"
+			ctx = canvas.getContext('2d');
+			
+			// C - all fill operations are now in red
+			ctx.fillStyle = 'black'; 
+			
+			// D - fill a rectangle with the current fill color
+			ctx.fillRect(20,20,600,440); 
+			
+			setInterval(drawWalker,1000/11);
+	//		setInterval(cls,5000);
+		}
+		
+		
+		function drawWalker(){
+			ctx.fillStyle = getRandomColor();
+			ctx.globalAlpha = 0.5;
+			ctx.fillRect(walker.x,walker.y,walker.width + getRandomInt(),walker.width + getRandomInt());
+			walker.move();
+		}
+		
+		// UTILS
+		function getRandomColor(){
+			function getByte(){
+				return 55 + Math.round(Math.random() * 200);
+			}
+			return "rgba(" + getByte() + "," + getByte() + "," + getByte() + ",.8)";
+		}
+        
+        function getRandomInt()
+        {
+            return Math.round(Math.random() * 30);
+        }
+		
+		function cls(){
+			ctx.clearRect(0,0,640,480);
+		}
+		
+		function flipWeightedCoin(weight = 0.2){
+			return Math.random() < weight;
+		}
+	</script>
+</head>
+<body>
+	<canvas width="640" height="480">
+		Get a real browser!
+	</canvas>
+</body>
+</html>

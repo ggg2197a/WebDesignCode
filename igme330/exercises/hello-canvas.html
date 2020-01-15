@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Template</title>
+	<style type="text/css">
+	canvas{
+		border:1px solid gray;
+	}
+    #fontLoader{     
+        height: 0;     
+        width: 0;     
+        overflow: hidden;   
+        }
+    #indie{    
+        font-family: 'Indie Flower', cursive;
+        }
+    #lobster{    
+        font-family: 'Lobster', cursive;   
+        } 
+	</style>
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+	<script>
+		// #0 - In this course we will always use ECMAScript 5's "strict" mode
+		// See what 'use strict' does here:
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
+		'use strict';
+		
+		// #1 call the init function after the pages loads
+		// this is called an "event handler"
+		window.onload = init;
+	
+		function init(){
+			// #2 Now that the page has loaded, start drawing!
+			console.log('init called');
+			
+			// A - canvas variable points at <canvas> tag
+            var canvas = document.querySelector('canvas');
+			
+			// B - the ctx variable points at a "2D drawing context"
+			var ctx = canvas.getContext('2d');
+			
+			// C - all fill operations are now in yellow
+			ctx.fillStyle = 'maroon';
+			
+			// D - fill a rectangle with the current fill color
+			ctx.fillRect(0,0,640,480); 
+			
+			// E - set the current font
+			ctx.font = 'bold 50pt Indie Flower'; 
+			
+			// F - change the current fill color
+            ctx.fillStyle = 'white'; 
+			
+            ctx.save();
+            ctx.shadowColor = "black";
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.shadowBlur = 30;
+            
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            
+			// G - draw and fill text using current fill color
+			ctx.fillText('Greg Gonzalez',320,240);
+            
+            ctx.font = '80px Indie Flower';
+            
+            ctx.fillText('IGM', 320, 320);
+            
+            ctx.restore();
+            ctx.fillRect(50, 210, 50, 50);
+            ctx.fillRect(540, 210, 50, 50);
+            
+            //set drawing state variables
+            ctx.strokeStyle = "white";
+            ctx.lineWidth = 7;
+            
+            //begin defining path
+            ctx.beginPath();
+            
+            //Start at this point
+            ctx.moveTo(0,100);
+            
+            //Draw to this point
+            ctx.lineTo(640,100);
+            
+            //Close the path
+            ctx.closePath();
+            
+            //'draw' the line so it is visible
+            ctx.stroke();
+            
+            
+            //set drawing state variables
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 12;
+            
+            //begin defining path
+            ctx.beginPath();
+            
+            //Start at this point
+            ctx.moveTo(20, 0);
+            
+            //Draw to this point
+            ctx.lineTo(20,480);
+            
+            //Close the path
+            ctx.closePath();
+            
+            //'draw' the line so it is visible
+            ctx.stroke();
+            
+            //set drawing state variables
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 8;
+            
+            //begin defining path
+            ctx.beginPath();
+            
+            //Start at this point
+            ctx.moveTo(320, 350);
+            
+            //Draw to this point
+            ctx.lineTo(240, 440);
+            
+            //Draw to this point
+            ctx.lineTo(400, 440);
+            
+            //Draw to this point
+            ctx.lineTo(320, 350);
+            
+            //Close the path
+            ctx.closePath();
+            
+            //'draw' the line so it is visible
+            ctx.stroke();
+
+		}
+	</script>
+</head>
+<body>
+	<canvas width="640" height="480">
+		Get a real browser!
+		<!-- The user will only see the above text if their browser is older and doesn't support <canvas> -->
+	</canvas>
+    <div id="fontLoader">     
+    <p id="indie">Indie Font</p>    
+    <p id="lobster">Lobster Font</p> 
+    </div>
+</body>
+</html>
